@@ -23,7 +23,7 @@ export default function Home() {
   }, []);
   return (
     <div className="flex flex-col flex-1 items-center justify-center  font-sans dark:bg-black">
-
+<h2>this for test if averything is working</h2>
         <ThemeToggle />
     </div>
   );

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchMovies } from "../utils/hooks/useSearchMovies";
+import { MovieCard } from "../types/movie";
 
 export default function SearchBox() {
     const [query, setQuery] = useState("");
@@ -37,7 +38,7 @@ export default function SearchBox() {
 
                     {isLoading && <p className="p-3 text-sm">Searching...</p>}
 
-                    {data?.map((movie: any) => (
+                    {data?.map((movie: MovieCard) => (
                         <Link
                             key={movie.id}
                             href={`/movie/${movie.id}`}

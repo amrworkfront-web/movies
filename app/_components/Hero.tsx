@@ -16,7 +16,7 @@ export default function Hero() {
         return <div className="text-red-500">Error loading hero movie</div>;
     }
 
-    const movie = data?.[0]; // 🔥 أول فيلم
+    const movie = data?.results?.[0]; // 🔥 أول فيلم
 
     if (!movie) return null;
 
