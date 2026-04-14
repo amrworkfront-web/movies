@@ -1,5 +1,5 @@
 import { api } from "../axios";
-import type { MoviesResponse, Movie } from "../../types/movie";
+import type { MoviesResponse, Movie, MovieDetails } from "../../types/movie";
 
 export const getPopularMovies = async (): Promise<MoviesResponse> => {
   const res = await api.get("/movie/popular");
@@ -12,7 +12,7 @@ export const getTrendingMovies = async (): Promise<MoviesResponse> => {
   return res.data;
 };
 
-export const getMovieDetails = async (id: number): Promise<Movie> => {
+export const getMovieDetails = async (id: number): Promise<MovieDetails> => {
   const res = await api.get(`/movie/${id}`);
   return res.data;
 };

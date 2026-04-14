@@ -1,30 +1,57 @@
-'use client'
+"use client";
 
-import { useEffect } from "react";
-import { ThemeToggle } from "./ThemeToggle";
-import MoviesSection from "./_components/MoviesSection";
-const API_KEY = process.env.NEXT_PUBLIC_TMDB_API_KEY; // 👈 استخدم المتغير من .env
+import Link from "next/link";
+
 export default function Home() {
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(
-          `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`
-        );
-        const data = await response.json();
-        console.log(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData(); // 👈 دي أهم حاجة
-  }, []);
   return (
-    <div className="flex flex-col flex-1 items-center justify-center  font-sans dark:bg-black">
-<h2>this for test if averything is working</h2>
-        <ThemeToggle />
+    <div className="relative min-h-screen flex items-center justify-center overflow-hidden">
+
+      {/* 🎬 Background Glow */}
+      <div className="absolute inset-0 bg-gradient-to-br from-black via-zinc-900 to-black" />
+
+      {/* 🔥 Floating blur effects */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-red-500/20 blur-3xl rounded-full" />
+      <div className="absolute bottom-20 right-10 w-72 h-72 bg-blue-500/20 blur-3xl rounded-full" />
+
+      {/* HERO CONTENT */}
+      <div className="relative z-10 text-center max-w-3xl px-6 space-y-6">
+
+        {/* Badge */}
+        <span className="px-4 py-1 rounded-full bg-white/10 text-sm text-gray-300">
+          🎬 Powered by TMDB API
+        </span>
+
+        {/* Title */}
+        <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+          Unlimited <span className="text-red-500">Movies</span><br />
+          One Place 🍿
+        </h1>
+
+        {/* Subtitle */}
+        <p className="text-gray-400 text-lg md:text-xl">
+          Explore trending, popular and upcoming movies instantly.
+        </p>
+
+        {/* CTA */}
+        <div className="flex items-center justify-center gap-4 pt-4">
+
+          <Link
+            href="/trending"
+            className="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 transition font-medium"
+          >
+            🔥 Start Watching
+          </Link>
+
+          <Link
+            href="/movies"
+            className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 transition"
+          >
+            Browse Library
+          </Link>
+
+        </div>
+
+      </div>
     </div>
   );
 }
