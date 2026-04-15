@@ -19,7 +19,6 @@ export default function MovieDetails() {
 const { add, remove, isInWatchlist } = useWatchlist();
 
 
-  const isSaved = isInWatchlist(data?.id);
   if (isLoading) return <MovieDetailsSkeleton />;
 
   if (error)
@@ -30,6 +29,7 @@ const { add, remove, isInWatchlist } = useWatchlist();
     );
 
   if (!data) return null;
+  const isSaved = isInWatchlist(data.id);
 
   const trailer = videos?.find(
     (vid: any) => vid.type === "Trailer" && vid.site === "YouTube"
