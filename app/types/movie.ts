@@ -72,7 +72,7 @@ export type MovieDetails = {
 
   popularity: number;
 
-  poster_path: string | null;
+  poster_path: string ;
 
   production_companies: ProductionCompany[];
   production_countries: any[];
