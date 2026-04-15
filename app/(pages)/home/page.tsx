@@ -1,5 +1,5 @@
-import Hero from "../_components/Hero";
-import MoviesSection from "../_components/MoviesSection";
+import Hero from "../../_components/Hero";
+import MoviesSection from "../../_components/MoviesSection";
 
  const Genres=[
     {

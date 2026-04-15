@@ -28,13 +28,14 @@ export type MovieCard = {
   title: string;
   poster_path: string | null;
   vote_average: number;
-};export type MoviesResponse = {
+};
+export type MoviesResponse = {
   page: number;
   results: Movie[];
   total_pages: number;
   total_results: number;
 };
- 
+
 export type Genre = {
   id: number;
   name: string;
@@ -91,4 +92,16 @@ export type MovieDetails = {
 
   vote_average: number;
   vote_count: number;
+};
+
+export type MovieCreditsResponse = {
+  id: number;
+  cast: CastMember[];
+};
+export type CastMember = {
+  character: string;
+  id: number;
+  name: string;
+  original_name: string;
+  profile_path: string;
 };

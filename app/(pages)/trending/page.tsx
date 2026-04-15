@@ -1,8 +1,8 @@
 'use client';
 
-import MovieCard from "../_components/MovieCard";
-import MovieCardSkeleton from "../_components/MovieCardSkeleton";
-import  useTrendingMovies  from "../utils/hooks/useTrendingMovies";
+import MovieCard from "../../_components/MovieCard";
+import MovieCardSkeleton from "../../_components/MovieCardSkeleton";
+import  useTrendingMovies  from "../../utils/hooks/useTrendingMovies";
 export default function Trending() {
     const { data, isLoading, error } = useTrendingMovies();
     if (isLoading)

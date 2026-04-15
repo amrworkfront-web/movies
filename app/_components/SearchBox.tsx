@@ -41,7 +41,7 @@ export default function SearchBox() {
                     {data?.map((movie: MovieCard) => (
                         <Link
                             key={movie.id}
-                            href={`/movie/${movie.id}`}
+                            href={`home/movieDetails/${movie.id}`}
                             className="flex items-center gap-3 p-2 hover:bg-white/10 transition"
                         >
                             <div className="relative w-10 h-14">

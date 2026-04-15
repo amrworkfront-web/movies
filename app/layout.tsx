@@ -33,7 +33,10 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col">       
         <Providers>
           <Navbar></Navbar>
-          {children}</Providers>
+          <main className="mt-22">
+            {children}
+          </main>
+          </Providers>
       </body>
     </html>
   );
