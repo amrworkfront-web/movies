@@ -10,7 +10,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "http://movietheatre.runasp.net/api/:path*"
+      }
+    ];
+  }
 };
 
 export default nextConfig;
