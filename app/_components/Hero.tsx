@@ -3,8 +3,24 @@
 import Link from "next/link";
 import { useHeroMovie } from "../utils/hooks/useHeroMovie";
 
+interface Movie {
+    id: number;
+    title: string;
+    overview: string;
+    backdrop_path: string;
+    vote_average: number;
+}
+
+interface HeroData {
+    results: Movie[];
+}
+
 export default function Hero() {
-    const { data, isLoading ,error} = useHeroMovie();
+    const { data, isLoading, error } = useHeroMovie() as {
+        data: HeroData | undefined;
+        isLoading: boolean;
+        error: any;
+    };
 
     if (isLoading) {
         return (

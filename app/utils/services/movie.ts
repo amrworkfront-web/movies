@@ -2,13 +2,13 @@ import { api } from "../axios";
 import type { MoviesResponse, Movie, MovieDetails, MovieCreditsResponse } from "../../types/movie";
 
 export const getPopularMovies = async (): Promise<MoviesResponse> => {
-  const res = await api.get("/movie/popular");
+  const res = await api.get(`/movie/popular?page=5`);
   return res.data;
 };
 
 
-export const getTrendingMovies = async (): Promise<MoviesResponse> => {
-  const res = await api.get("/trending/movie/day");
+export const getTrendingMovies = async (page: number = 1): Promise<MoviesResponse> => {
+  const res = await api.get(`/trending/movie/day?page=${page}`);
   return res.data;
 };
 
