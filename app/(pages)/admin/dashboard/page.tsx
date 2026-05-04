@@ -1,5 +1,7 @@
 import RecentMovies from '@/app/_components/RecentMovies';
 import StatisticsCard from '@/app/_components/StatisticsCard'
+import useGetFilms from '@/app/utils/filmHooks/useGetFilms';
+import useGetGeneres from '@/app/utils/filmHooks/useGetGeneres';
 
 import { Film, LayoutGrid, Users, Plus, ArrowRight } from "lucide-react";
 import Link from 'next/link';
@@ -7,34 +9,32 @@ import Link from 'next/link';
 const data = [
     {
         icon: Film,
-        value: 120,
         title: "Total Movies",
         isActive: true,
     },
     {
         icon: LayoutGrid,
-        value: 8,
         title: "Total Categories",
         isActive: false,
     },
     {
         icon: Users,
-        value: 350,
         title: "Total Users",
         isActive: false,
     },
 ];
 
 export default function Dashboard() {
+
     return (
         <div className='space-y-12'>
-            <div className='grid grid-cols-3 gap-4'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                 {
                     data.map((item, index) =>
                         <div className=' 
 
 
-' key={index}> <StatisticsCard title={item.title} value={item.value} icon={<item.icon size={24} />} isActive={item.isActive} /> </div>)}
+' key={index}> <StatisticsCard title={item.title} icon={<item.icon size={24} />} isActive={item.isActive} /> </div>)}
             </div>
 
             <div className='bg-surface-low p-4 rounded-lg

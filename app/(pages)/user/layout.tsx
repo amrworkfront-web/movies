@@ -9,7 +9,7 @@ export default function Layout({
   return (
     <>
       <Navbar></Navbar>
-          <main className="mt-22">
+          <main className="mt-12">
             {children}
           </main>
     

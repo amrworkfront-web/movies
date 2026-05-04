@@ -8,6 +8,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useMutation } from '@tanstack/react-query';
 import { login } from '@/app/utils/services/user';
 import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
+import Test from '@/app/_components/Test';
 
 const schema = z.object({
   userName: z.string().min(2, "Invalid username"),
@@ -22,9 +24,19 @@ const{mutate , error} = useMutation({
 mutationFn:({ userName, password }: { userName: string, password: string }) => login({ userName, password }),
 
   onSuccess: (data) => {
-    console.log("Login successful:", data);
-    router.push('/dashboard');
-  }
+toast.success(`Welcome back,!`);
+if(data.data.user.role===1)
+    router.push('/admin/dashboard');
+else
+    router.push('/user/home');
+  },
+  onError: (error: any) => {
+     const message =
+    typeof error?.response?.data === "string"
+      ? error.response.data
+      : "Registration failed";
+
+  toast.error(message);}
 }); 
 
   const onSubmit = (data: FormData) => {
@@ -35,7 +47,7 @@ mutationFn:({ userName, password }: { userName: string, password: string }) => l
 
   return (
     <div className='h-screen flex items-center justify-center'>
-      <div className='w-[60%] lg:w-[40%] bg-surface-highest px-4 py-8 rounded-2xl '>
+      <div className=' md:w-[60%] lg:w-[40%] bg-surface-highest px-4 py-8 rounded-2xl '>
         <h2 className='text-3xl md:text-5xl font-bold text-white text-center'>Welcome back</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
 

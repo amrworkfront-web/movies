@@ -15,12 +15,25 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import useCreateGenre from "../utils/filmHooks/useCreateGenre";
+import { updateGenre } from "../utils/services/film";
+import { useMutation,useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
+import { Pen } from "lucide-react";
 
-export function CategorieDailog() {
-  const [name, setName] = useState("");
-const {mutate, isPending, isError} = useCreateGenre();
-
+export function CategorieUpdate({id, title}: {id: string, title: string}) {
+const queryClient = useQueryClient();
+  const [name, setName] = useState(title);
+const{mutate, isPending, isError} = useMutation({
+    mutationFn: (name: string) => updateGenre(id, name),
+    onSuccess: () => {
+        
+        queryClient.invalidateQueries({ queryKey: ["genres"] });
+        toast.success("Genre updated successfully");
+},
+onError: () => {
+    toast.error("Failed to update genre");
+}
+});
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) return;
@@ -33,16 +46,16 @@ const {mutate, isPending, isError} = useCreateGenre();
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Add Category</Button>
+        <div className="bg-blue-500/20 text-blue-500 p-4 rounded-lg"><Pen ></Pen></div>
       </DialogTrigger>
 
       <DialogContent className="sm:max-w-sm">
         <form onSubmit={handleSubmit} className="space-y-4">
           
           <DialogHeader>
-            <DialogTitle>Add Category</DialogTitle>
+            <DialogTitle>Update Category</DialogTitle>
             <DialogDescription>
-              Create a new movie category.
+              Update the details of an existing movie category.
             </DialogDescription>
           </DialogHeader>
 

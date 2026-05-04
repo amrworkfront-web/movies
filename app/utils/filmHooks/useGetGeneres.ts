@@ -1,9 +1,9 @@
 'use client'
 import { useQuery } from "@tanstack/react-query";
 import { getGeneres } from "../services/film";
-export default function useGeneres() {
+export default function useGetGeneres() {
   return useQuery({
-    queryKey: ["generes"],
+    queryKey: ["genres"],
     queryFn: async () => getGeneres(),
   });
 }

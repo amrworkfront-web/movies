@@ -56,7 +56,6 @@ export type SpokenLanguage = {
 export type MovieDetails = {
   adult: boolean;
   backdrop_path: string | null;
-  belongs_to_collection: any | null;
 
   budget: number;
   genres: Genre[];
@@ -75,7 +74,6 @@ export type MovieDetails = {
   poster_path: string ;
 
   production_companies: ProductionCompany[];
-  production_countries: any[];
 
   release_date: string;
 

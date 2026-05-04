@@ -4,13 +4,24 @@ export type Genre = {
   name: string;
   moviesCount: number}
 
-export type Film = {
-id:string;
-title: string;
-description: string;
-releaseDate: string;
-genreId: string;
-genreName: string;
-photoUrl: string;  
-
-}
+  export type CreateMovieRequest = {
+  Title: string;
+  Description: string;
+  GenreId: string;
+  Photo: File;
+};
+export type MovieResponse = {
+  id: string;
+  title: string;
+  description: string;
+  genre: {
+    id: string;
+    name: string;
+  };
+  photoUrl: string;
+  createdAt: string;
+  seriesId: string | null;
+  seriesName: string | null;
+  genres: Genre[];
+};
+ 

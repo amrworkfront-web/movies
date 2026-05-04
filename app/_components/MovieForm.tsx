@@ -7,7 +7,9 @@ import Input from "./Input";
 import { Button } from "@/components/ui/button";
 import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
-
+import useGetGeneres from "../utils/filmHooks/useGetGeneres";
+import { CreateMovieRequest } from "../types/film";
+import useCreateFilm from "../utils/filmHooks/useCreateFilm";
 const formSchema = z.object({
   Title: z.string().min(1, "Title is required"),
   Description: z.string().min(1, "Description is required"),
@@ -17,17 +19,11 @@ const formSchema = z.object({
 
 type FormData = z.infer<typeof formSchema>;
 
-const Generes = [
-  { id: "1", name: "Action" },
-  { id: "2", name: "Comedy" },
-  { id: "3", name: "Drama" },
-  { id: "4", name: "Horror" },
-  { id: "5", name: "Sci-Fi" },
-];
 
 export default function MovieForm() {
   const [preview, setPreview] = useState<string | null>(null);
-
+  const { data } = useGetGeneres()
+  const{mutate,isError,isPending}=useCreateFilm();
   const {
     register,
     handleSubmit,
@@ -53,16 +49,9 @@ export default function MovieForm() {
     onDrop,
   });
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = (data: CreateMovieRequest) => {
     console.log("Form Data:", data);
-
-    const formData = new FormData();
-    formData.append("Title", data.Title);
-    formData.append("Description", data.Description);
-    formData.append("GenreId", data.GenreId);
-    formData.append("Photo", data.Photo); // هنا file مباشر
-
-    console.log("FormData Ready:", formData);
+    mutate(data);
   };
 
   return (
@@ -118,7 +107,6 @@ export default function MovieForm() {
         )}
       </div>
 
-      {/* Genre */}
       <div className="flex flex-col">
         <label>Genre</label>
         <select
@@ -126,7 +114,7 @@ export default function MovieForm() {
           {...register("GenreId")}
         >
           <option value="">Select Genre</option>
-          {Generes.map((genre) => (
+          {data?.map((genre) => (
             <option key={genre.id} value={genre.id}>
               {genre.name}
             </option>

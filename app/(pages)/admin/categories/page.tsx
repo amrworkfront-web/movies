@@ -2,10 +2,10 @@
 import CategorieCard from '@/app/_components/CategorieCard';
 import { CategorieDailog } from '@/app/_components/CategorieDailog'
 import { Genre } from '@/app/types/film';
-import useGeneres from '@/app/utils/hooks/useGeneres';
+import useGetGeneres from '@/app/utils/filmHooks/useGetGeneres';
 
 export default function Categories() {
-  const { data: genres } = useGeneres();
+  const { data: genres } = useGetGeneres();
 
     return (
         <div>
@@ -16,10 +16,11 @@ export default function Categories() {
                 <CategorieDailog></CategorieDailog>
             </div>
 
-            <div className='grid grid-cols-2  md:grid-cols-3 lg:grid-cols-4 gap-4 mt-6'>
+            <div className='grid grid-cols-1  md:grid-cols-2   lg:grid-cols-4 gap-4 mt-6'>
                 {
-                    genres?.map((genre: Genre, index: number) =>
-                    <CategorieCard key={index} title={genre.name} numOfMovies={genre.moviesCount} />)
+                    genres?.map((genre: Genre) =>
+                    <CategorieCard key={genre.id} id={genre.id} title={genre.name} numOfMovies={genre.moviesCount} />
+                )
                 }
             </div>
         </div>

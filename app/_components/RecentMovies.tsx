@@ -8,14 +8,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import { Star } from 'lucide-react';
-import useFilms from "../utils/hooks/useFilms";
-import { Film } from "../types/film";
+import useGetFilms from "../utils/filmHooks/useGetFilms";
 import { useEffect } from "react";
+import { MovieResponse } from "../types/film";
 
 
 export default function RecentMovies() {
-  const { data: films } = useFilms();
+  const { data: films } = useGetFilms();
   useEffect(() => {
     console.log(films);
   }, [films]);
@@ -31,10 +30,10 @@ export default function RecentMovies() {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {films?.map((film:Film) => (
+        {films?.map((film:MovieResponse) => (
           <TableRow key={film.id}>
             <TableCell className="font-medium">{film.title}</TableCell>
-            <TableCell>{film.genreName}3 </TableCell>
+            <TableCell>{film.genre?.name}</TableCell>
             <TableCell>{film.description}</TableCell>
             <TableCell  ><img src={film.photoUrl} alt={film.title} className="w-16 h-16 object-cover" /></TableCell>
           </TableRow>
