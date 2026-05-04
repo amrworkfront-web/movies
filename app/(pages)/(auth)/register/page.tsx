@@ -8,7 +8,6 @@ import { reg } from '@/app/utils/services/user';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner';
-import Test from '@/app/_components/Test';
 
 
 

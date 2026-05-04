@@ -9,7 +9,6 @@ import { useMutation } from '@tanstack/react-query';
 import { login } from '@/app/utils/services/user';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import Test from '@/app/_components/Test';
 
 const schema = z.object({
   userName: z.string().min(2, "Invalid username"),
