@@ -48,8 +48,8 @@ export default function Dashboard() {
 
                 </span>
                 <div className='flex gap-4'>
-                    <Link href='/movies/add' className='bg-primary-container text-white px-4 py-2 rounded-lg mt-4 flex items-center gap-2'><Plus size={16} /> Add Movie</Link>
-                    <Link href='/categories' className='bg-black/90
+                    <Link href='/admin/movies/add' className='bg-primary-container text-white px-4 py-2 rounded-lg mt-4 flex items-center gap-2'><Plus size={16} /> Add Movie</Link>
+                    <Link href='/admin/categories' className='bg-black/90
 
  text-white px-4 py-2 rounded-lg mt-4 flex items-center gap-2'><Plus size={16} /> Add Category</Link>
                 </div>

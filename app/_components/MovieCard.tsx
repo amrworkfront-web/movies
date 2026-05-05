@@ -7,7 +7,7 @@ export default function MovieCard({ movie }: { movie: MovieCard }) {
     <div>
 
       <Link
-        href={`home/movieDetails/${movie.id}`}>
+        href={`/user/home/movieDetails/${movie.id}`}>
 
         <div className="group relative cursor-pointer">
 

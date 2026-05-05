@@ -9,6 +9,7 @@ import { useMutation } from '@tanstack/react-query';
 import { login } from '@/app/utils/services/user';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
+import { AxiosError } from 'axios';
 
 const schema = z.object({
   userName: z.string().min(2, "Invalid username"),
@@ -25,18 +26,26 @@ mutationFn:({ userName, password }: { userName: string, password: string }) => l
   onSuccess: (data) => {
 toast.success(`Welcome back,!`);
 if(data.data.user.role===1)
-    router.push('/admin/dashboard');
+    router.push('/admin');
 else
     router.push('/user/home');
   },
-  onError: (error: any) => {
-     const message =
-    typeof error?.response?.data === "string"
-      ? error.response.data
-      : "Registration failed";
+  onError: (error: unknown) => {
+    if (error instanceof AxiosError) {
+      const message = error.response?.data ?? "Login failed";
 
-  toast.error(message);}
-}); 
+      // optional تحسين الرسالة
+      if (message.includes("username")) {
+        toast.error("Username not found");
+      } else {
+        toast.error(message);
+      }
+    } else {
+      toast.error("Something went wrong");
+    }
+  }
+});
+
 
   const onSubmit = (data: FormData) => {
     console.log("Form Data:", data);

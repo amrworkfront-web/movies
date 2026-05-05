@@ -8,6 +8,7 @@ import { reg } from '@/app/utils/services/user';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation'
 import { toast } from 'sonner';
+import { AxiosError } from 'axios';
 
 
 
@@ -30,14 +31,20 @@ export default function Register() {
       toast.success("Registration successful!");
       router.push('/login');
     },
-    onError: (error: any) => {
-      const message =
-        typeof error?.response?.data === "string"
-          ? error.response.data
-          : "Registration failed";
+onError: (error: unknown) => {
+  if (error instanceof AxiosError) {
+    const message = error.response?.data ?? "Registration failed";
 
+    // optional تحسين الرسالة
+    if (message.includes("username")) {
+      toast.error("Username not found");
+    } else {
       toast.error(message);
     }
+  } else {
+    toast.error("Something went wrong");
+  }
+}
   });
 
   const onSubmit = (data: FormData) => {

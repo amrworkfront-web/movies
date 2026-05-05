@@ -35,14 +35,14 @@ export default function Home() {
         <div className="flex items-center justify-center gap-4 pt-4">
 
           <Link
-            href="/home"
+            href="/user/home"
             className="px-6 py-3 rounded-xl bg-red-600 hover:bg-red-700 transition font-medium"
           >
             🔥 Start Watching
           </Link>
 
           <Link
-            href="/trending"
+            href="/user/trending"
             className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 transition"
           >
              Tranding Movies

@@ -8,7 +8,7 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
 
 export default function Input({ label, error, ...props }: Props) {
   return (
-    <div className="flex flex-col space-y-2">
+    <div className="flex flex-col space-y-4 py-4">
       <label className="text-sm font-medium">{label}</label>
 
       <input

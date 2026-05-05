@@ -17,7 +17,10 @@ const nextConfig: NextConfig = {
         destination: "http://movietheatre.runasp.net/api/:path*"
       }
     ];
-  }
+  },
+
+  allowedDevOrigins: ['192.168.1.2'],
 };
+
 
 export default nextConfig;

@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 
 const Links = [
-  { name: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
+  { name: "Dashboard", href: "/admin/", icon: LayoutDashboard },
   { name: "Movies", href: "/admin/movies", icon: Film },
   { name: "Categories", href: "/admin/categories", icon: List },
 ];
@@ -35,19 +35,21 @@ export default function Sidebar({
         />
       )}
 
-      <aside
-        className={`
-          fixed md:static
-          top-0 left-0
-           w-64
-          bg-surface-high text-white
-          py-6 px-3
-          z-50
-          transform transition-transform duration-300
-          ${open ? "translate-x-0" : "-translate-x-full"}
-          md:translate-x-0
-        `}
-      >
+<aside
+  className={`
+    fixed md:sticky
+    top-0 left-0
+    w-64
+    h-screen
+    bg-surface-high text-white
+    py-6 px-3
+    z-50
+    overflow-y-auto
+    transform transition-transform duration-300
+    ${open ? "translate-x-0" : "-translate-x-full"}
+    md:translate-x-0
+  `}
+>
         {/* Close button (mobile) */}
         <div className="flex justify-between items-center mb-6 md:hidden">
           <h2 className="text-xl font-bold">Navigation</h2>
